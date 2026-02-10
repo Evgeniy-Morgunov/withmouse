@@ -228,44 +228,107 @@
             margin-bottom: 10px;
         }
 
-        .answer-area {
-            margin-top: 20px;
+        /* Форма отправки */
+        .response-form {
+            margin-top: 25px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
-        textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1em;
-            resize: vertical;
-            min-height: 100px;
+        .form-group {
             margin-bottom: 15px;
         }
 
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
         }
 
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn:disabled:hover {
+            box-shadow: none;
+        }
+
+        /* Обратная связь */
         .feedback {
             margin-top: 20px;
             padding: 15px;
             border-radius: 10px;
             display: none;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .feedback.correct {
+        .feedback.success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
+            display: block;
         }
 
-        .feedback.incorrect {
+        .feedback.error {
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .feedback.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
         }
 
         /* Футер */
@@ -277,38 +340,10 @@
             font-size: 0.9em;
         }
 
-        /* Прогресс */
-        .progress {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .progress-bar {
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.5s;
-        }
-
         /* Анимации */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
         }
 
         /* Мобильная адаптация */
@@ -461,12 +496,21 @@
                         <li>Объясни, какие факторы могут повлиять на точность прогноза</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="ds-answer" placeholder="Напишите ваш анализ и прогноз здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('ds')">Проверить ответ</button>
-                        <div id="ds-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-ds" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Data Scientist">
+                        <div class="form-group">
+                            <label for="name-ds">Ваше имя:</label>
+                            <input type="text" id="name-ds" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-ds">Ваш ответ:</label>
+                            <textarea id="answer-ds" name="answer" placeholder="Напишите ваш анализ и прогноз здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-ds" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -526,12 +570,21 @@
                         <li>Предложи два решения для увеличения продаж</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="da-answer" placeholder="Напишите ваш анализ здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('da')">Проверить ответ</button>
-                        <div id="da-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-da" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Data Analyst">
+                        <div class="form-group">
+                            <label for="name-da">Ваше имя:</label>
+                            <input type="text" id="name-da" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-da">Ваш ответ:</label>
+                            <textarea id="answer-da" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-da" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -586,12 +639,21 @@
                         <li>Предложи, как можно улучшить проведение опроса</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="stat-answer" placeholder="Напишите ваш анализ здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('stat')">Проверить ответ</button>
-                        <div id="stat-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-stat" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Статистик">
+                        <div class="form-group">
+                            <label for="name-stat">Ваше имя:</label>
+                            <input type="text" id="name-stat" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-stat">Ваш ответ:</label>
+                            <textarea id="answer-stat" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-stat" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -647,12 +709,21 @@
                         <li>Сделай вывод о дефиците или профиците бюджета</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="act-answer" placeholder="Напишите ваши расчёты и вывод здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('act')">Проверить ответ</button>
-                        <div id="act-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-act" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Актуарий">
+                        <div class="form-group">
+                            <label for="name-act">Ваше имя:</label>
+                            <input type="text" id="name-act" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-act">Ваш ответ:</label>
+                            <textarea id="answer-act" name="answer" placeholder="Напишите ваши расчёты и вывод здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-act" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -705,12 +776,21 @@
                         <li>Сделай вывод об эффективности лечения</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="bio-answer" placeholder="Напишите ваш анализ здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('bio')">Проверить ответ</button>
-                        <div id="bio-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-bio" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Биостатистик">
+                        <div class="form-group">
+                            <label for="name-bio">Ваше имя:</label>
+                            <input type="text" id="name-bio" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-bio">Ваш ответ:</label>
+                            <textarea id="answer-bio" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-bio" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -767,12 +847,21 @@
                         <li>Выбери самого ценного игрока и объясни свой выбор</li>
                     </ol>
 
-                    <div class="answer-area">
-                        <label><strong>Ваш ответ:</strong></label>
-                        <textarea id="sport-answer" placeholder="Напишите ваш анализ здесь..."></textarea>
-                        <button class="btn" onclick="checkAnswer('sport')">Проверить ответ</button>
-                        <div id="sport-feedback" class="feedback"></div>
-                    </div>
+                    <!-- Форма отправки -->
+                    <form class="response-form" id="form-sport" action="https://formspree.io/f/xvzbzplz" method="POST">
+                        <input type="hidden" name="profession" value="Спортивный аналитик">
+                        <div class="form-group">
+                            <label for="name-sport">Ваше имя:</label>
+                            <input type="text" id="name-sport" name="student-name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-sport">Ваш ответ:</label>
+                            <textarea id="answer-sport" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📤 Отправить ответ</button>
+                    </form>
+
+                    <div id="feedback-sport" class="feedback"></div>
                 </div>
             </div>
         </section>
@@ -806,28 +895,69 @@
             document.getElementById(moduleId).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Проверка ответов
-        function checkAnswer(type) {
-            const feedbackId = type + '-feedback';
-            const feedbackEl = document.getElementById(feedbackId);
-            
-            feedbackEl.style.display = 'block';
-            feedbackEl.className = 'feedback correct';
-            
-            if (type === 'ds') {
-                feedbackEl.innerHTML = '✅ <strong>Отлично!</strong><br><br><strong>Примерный ответ:</strong><br>• Средний прирост: ~200 скачиваний в месяц<br>• Прогноз через 6 месяцев: ~4 800 скачиваний<br>• Прогноз через 12 месяцев: ~6 000 скачиваний<br>• Факторы: маркетинг, сезонность, конкуренты, отзывы';
-            } else if (type === 'da') {
-                feedbackEl.innerHTML = '✅ <strong>Молодец!</strong><br><br><strong>Примерный ответ:</strong><br>• Самый прибыльный день: Суббота (50 000 ₽)<br>• Самая прибыльная категория: Электроника (125 000 ₽)<br>• Решения: расширить ассортимент электроники, увеличить рекламу в будние дни';
-            } else if (type === 'stat') {
-                feedbackEl.innerHTML = '✅ <strong>Верно!</strong><br><br><strong>Примерный ответ:</strong><br>• Математика: 28%, Информатика: 22%, История: 18%, Физра: 17%, Русский: 15%<br>• Выборка репрезентативна (10% от населения)<br>• Улучшения: стратифицированная выборка по классам, анонимность';
-            } else if (type === 'act') {
-                feedbackEl.innerHTML = '✅ <strong>Правильно!</strong><br><br><strong>Расчёты:</strong><br>• Взносы: 60М × 55 000 × 0.22 × 12 = 8.712 трлн ₽<br>• Выплаты: 35М × 22 000 × 12 = 9.24 трлн ₽<br>• Дефицит: 528 млрд ₽ в год';
-            } else if (type === 'bio') {
-                feedbackEl.innerHTML = '✅ <strong>Точно!</strong><br><br><strong>Вывод:</strong><br>• Разница: 3 дня (10 - 7)<br>• Препарат ускоряет выздоровление на 30%<br>• Лечение эффективно, статистически значимо';
-            } else if (type === 'sport') {
-                feedbackEl.innerHTML = '✅ <strong>Здорово!</strong><br><br><strong>Пример формулы:</strong><br>Эффективность = (Голы × 2 + Передачи) / (Минуты / 90)<br>• Игрок А: 1.30, Игрок B: 1.41, Игрок C: 1.13, Игрок D: 1.37<br>• Лучший: Игрок B (самый результативный)';
-            }
-        }
+        // Обработчик отправки форм
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formId = this.id;
+                    const feedbackId = 'feedback-' + formId.split('-')[1];
+                    const feedbackEl = document.getElementById(feedbackId);
+                    const submitBtn = this.querySelector('.submit-btn');
+                    
+                    // Показать сообщение "Отправляем..."
+                    feedbackEl.textContent = '📤 Отправляем ваш ответ...';
+                    feedbackEl.className = 'feedback loading';
+                    feedbackEl.style.display = 'block';
+                    
+                    // Отключить кнопку
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Отправка...';
+                    
+                    // Собрать данные формы
+                    const formData = new FormData(this);
+                    
+                    // Отправить данные на Formspree
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Успех
+                            feedbackEl.textContent = '✅ Отлично! Ваш ответ успешно отправлен на почту!';
+                            feedbackEl.className = 'feedback success';
+                            
+                            // Очистить форму
+                            this.reset();
+                            
+                            // Через 3 секунды скрыть сообщение
+                            setTimeout(() => {
+                                feedbackEl.style.display = 'none';
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = '📤 Отправить ответ';
+                            }, 3000);
+                        } else {
+                            // Ошибка сервера
+                            return response.json().then(data => {
+                                throw new Error(data.error || 'Ошибка сервера');
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        // Ошибка сети или другая
+                        feedbackEl.textContent = '❌ Ошибка отправки: ' + error.message + '. Проверьте подключение к интернету и попробуйте ещё раз.';
+                        feedbackEl.className = 'feedback error';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = '📤 Отправить ответ';
+                    });
+                });
+            });
+        });
 
         // Добавить плавную прокрутку
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
