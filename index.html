@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>С мышкой по жизни: Статистика в профессиях будущего</title>
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -577,8 +575,8 @@
                         <li>Объясни, какие факторы могут повлиять на точность прогноза</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-ds">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-ds" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Data Scientist">
                         <div class="form-group">
                             <label for="name-ds">Ваше имя:</label>
@@ -587,6 +585,21 @@
                         <div class="form-group">
                             <label for="answer-ds">Ваш ответ:</label>
                             <textarea id="answer-ds" name="answer" placeholder="Напишите ваш анализ и прогноз здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-ds">
+                            <label for="file-ds" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-ds" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-ds">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('ds')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -658,8 +671,8 @@
                         <li>Предложи два решения для увеличения продаж</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-da">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-da" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Data Analyst">
                         <div class="form-group">
                             <label for="name-da">Ваше имя:</label>
@@ -668,6 +681,21 @@
                         <div class="form-group">
                             <label for="answer-da">Ваш ответ:</label>
                             <textarea id="answer-da" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-da">
+                            <label for="file-da" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-da" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-da">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('da')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -734,8 +762,8 @@
                         <li>Предложи, как можно улучшить проведение опроса</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-stat">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-stat" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Статистик">
                         <div class="form-group">
                             <label for="name-stat">Ваше имя:</label>
@@ -744,6 +772,21 @@
                         <div class="form-group">
                             <label for="answer-stat">Ваш ответ:</label>
                             <textarea id="answer-stat" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-stat">
+                            <label for="file-stat" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-stat" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-stat">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('stat')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -811,8 +854,8 @@
                         <li>Сделай вывод о дефиците или профиците бюджета</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-act">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-act" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Актуарий">
                         <div class="form-group">
                             <label for="name-act">Ваше имя:</label>
@@ -821,6 +864,21 @@
                         <div class="form-group">
                             <label for="answer-act">Ваш ответ:</label>
                             <textarea id="answer-act" name="answer" placeholder="Напишите ваши расчёты и вывод здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-act">
+                            <label for="file-act" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-act" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-act">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('act')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -885,8 +943,8 @@
                         <li>Сделай вывод об эффективности лечения</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-bio">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-bio" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Биостатистик">
                         <div class="form-group">
                             <label for="name-bio">Ваше имя:</label>
@@ -895,6 +953,21 @@
                         <div class="form-group">
                             <label for="answer-bio">Ваш ответ:</label>
                             <textarea id="answer-bio" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-bio">
+                            <label for="file-bio" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-bio" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-bio">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('bio')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -963,8 +1036,8 @@
                         <li>Выбери самого ценного игрока и объясни свой выбор</li>
                     </ol>
 
-                    <!-- Форма отправки -->
-                    <form class="response-form" id="form-sport">
+                    <!-- Форма отправки с файлом -->
+                    <form class="response-form" id="form-sport" action="https://formspree.io/f/xreaqnea" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="profession" value="Спортивный аналитик">
                         <div class="form-group">
                             <label for="name-sport">Ваше имя:</label>
@@ -973,6 +1046,21 @@
                         <div class="form-group">
                             <label for="answer-sport">Ваш ответ:</label>
                             <textarea id="answer-sport" name="answer" placeholder="Напишите ваш анализ здесь..." required></textarea>
+                        </div>
+                        
+                        <!-- Блок загрузки файла -->
+                        <div class="file-upload" id="file-upload-sport">
+                            <label for="file-sport" class="file-upload-label">
+                                📎 Прикрепить файл (скриншот, таблицу, документ)
+                            </label>
+                            <input type="file" id="file-sport" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt,.xlsx,.csv">
+                            <div class="file-upload-info">
+                                Поддерживаются: JPG, PNG, PDF, DOC, TXT, XLSX (макс. 5 МБ)
+                            </div>
+                            <div class="file-preview" id="file-preview-sport">
+                                <span class="file-name"></span>
+                                <span class="file-remove" onclick="removeFile('sport')">✕</span>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">📤 Отправить ответ</button>
@@ -996,36 +1084,94 @@
     </div>
 
     <script>
-        // Инициализация EmailJS (раскомментируй после настройки)
-        // emailjs.init("YOUR_PUBLIC_KEY");
-        
         // Показать выбор профессий
         function showProfessions() {
-            document.getElementById('home').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
             document.getElementById('professions').style.display = 'block';
+            document.querySelectorAll('.module').forEach(m => m.style.display = 'none');
         }
 
         // Показать главную
         function showHome() {
             document.getElementById('home').style.display = 'block';
             document.getElementById('professions').style.display = 'none';
-            // Скрыть все модули
             document.querySelectorAll('.module').forEach(m => m.style.display = 'none');
         }
 
         // Показать модуль профессии
         function showModule(moduleId) {
             document.getElementById('professions').style.display = 'none';
-            // Скрыть все модули
             document.querySelectorAll('.module').forEach(m => m.style.display = 'none');
-            // Показать выбранный модуль
             document.getElementById(moduleId).style.display = 'block';
-            // Прокрутить к началу модуля
             document.getElementById(moduleId).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Обработчик отправки форм (без файлов, только текст)
+        // Обработка перетаскивания файлов
         document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.file-upload').forEach(upload => {
+                const input = upload.querySelector('input[type="file"]');
+                const preview = upload.querySelector('.file-preview');
+                const fileName = preview.querySelector('.file-name');
+                
+                upload.addEventListener('click', function(e) {
+                    if (e.target !== input && e.target !== upload.querySelector('.file-remove')) {
+                        input.click();
+                    }
+                });
+                
+                input.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        const file = this.files[0];
+                        const fileSize = file.size / 1024 / 1024;
+                        
+                        if (fileSize > 5) {
+                            alert('Файл слишком большой! Максимальный размер — 5 МБ.');
+                            this.value = '';
+                            return;
+                        }
+                        
+                        fileName.textContent = file.name;
+                        preview.classList.add('show');
+                    }
+                });
+                
+                upload.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('dragover');
+                });
+                
+                upload.addEventListener('dragleave', function() {
+                    this.classList.remove('dragover');
+                });
+                
+                upload.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                    
+                    if (e.dataTransfer.files.length > 0) {
+                        const file = e.dataTransfer.files[0];
+                        const fileSize = file.size / 1024 / 1024;
+                        
+                        if (fileSize > 5) {
+                            alert('Файл слишком большой! Максимальный размер — 5 МБ.');
+                            return;
+                        }
+                        
+                        input.files = e.dataTransfer.files;
+                        fileName.textContent = file.name;
+                        preview.classList.add('show');
+                    }
+                });
+            });
+
+            window.removeFile = function(formId) {
+                const input = document.getElementById('file-' + formId);
+                const preview = document.getElementById('file-preview-' + formId);
+                input.value = '';
+                preview.classList.remove('show');
+            };
+
+            // Обработчик отправки форм через Formspree
             document.querySelectorAll('form').forEach(form => {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
@@ -1035,25 +1181,46 @@
                     const feedbackEl = document.getElementById(feedbackId);
                     const submitBtn = this.querySelector('.submit-btn');
                     
-                    // Показать сообщение "Отправляем..."
                     feedbackEl.textContent = '📤 Отправляем ваш ответ...';
                     feedbackEl.className = 'feedback loading';
                     feedbackEl.style.display = 'block';
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Отправка...';
                     
-                    // Имитация отправки (без EmailJS)
-                    setTimeout(() => {
-                        feedbackEl.textContent = '✅ Ответ успешно сохранён! Спасибо!';
-                        feedbackEl.className = 'feedback success';
-                        this.reset();
-                        
-                        setTimeout(() => {
-                            feedbackEl.style.display = 'none';
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = '📤 Отправить ответ';
-                        }, 3000);
-                    }, 1000);
+                    const formData = new FormData(this);
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            feedbackEl.textContent = '✅ Ответ успешно отправлен!';
+                            feedbackEl.className = 'feedback success';
+                            this.reset();
+                            const preview = this.querySelector('.file-preview');
+                            if (preview) preview.classList.remove('show');
+                            
+                            setTimeout(() => {
+                                feedbackEl.style.display = 'none';
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = '📤 Отправить ответ';
+                            }, 3000);
+                        } else {
+                            return response.json().then(data => {
+                                throw new Error(data.error || 'Ошибка сервера');
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        feedbackEl.textContent = '❌ Ошибка: ' + error.message;
+                        feedbackEl.className = 'feedback error';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = '📤 Отправить ответ';
+                    });
                 });
             });
         });
